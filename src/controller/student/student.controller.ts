@@ -65,6 +65,20 @@ export class StudentController {
         }
     }
 
+    @Get('/search/:name')
+    async searchStudentsByName(@Res() response, @Param('name') name: string) {
+        try {
+            const students = await this.studentService.searchStudentsByName(name);
+            return response.status(HttpStatus.OK).json({
+                message: `Students with name '${name}' found successfully`,
+                students,
+            });
+        } catch (err) {
+            return response.status(err.status).json(err.response);
+        }
+    }
+
+
     @Delete('/:id')
     async deleteStudent(@Res() response, @Param('id') studentId: string) {
         try {

@@ -38,6 +38,14 @@ export class StudentService {
         return existingStudent;
     }
 
+    async searchStudentsByName(name: string): Promise<IStudent[]> {
+        const students = await this.studentModel.find({ name: { $regex: name, $options: 'i' } });
+        if (students.length === 0) {
+            throw new NotFoundException(`Student '${name}' not found`);
+        }  
+        return students;
+    }
+
     async deleteStudent(studentId: string): Promise<IStudent> {
         const deletedStudent = await this.studentModel.findByIdAndDelete(studentId);
         if (!deletedStudent) {
