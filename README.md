@@ -1,5 +1,5 @@
 
-# NestJS MongoDB Student API
+# Nestjs MongoDB Student API
 
 This is a basic API project developed using NestJS and MongoDB, designed to manage student information. The project includes APIs to perform CRUD (Create, Read, Update, Delete) operations on a student model, allowing you to add, retrieve, update, and delete student records.
 
